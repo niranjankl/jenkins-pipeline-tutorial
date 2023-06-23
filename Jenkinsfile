@@ -51,6 +51,11 @@ pipeline {
          sh "aws ecs update-service --cluster ${cluster} --service sample-app-service --task-definition ${task_def_arn} --region ${region}"
          }
         }
-
+        stage('smoke-test') {
+            steps {
+                  sh "bash ./smoke-google.sh"
+            }
+        }
+	    
     }
 }
